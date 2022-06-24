@@ -5,13 +5,20 @@ DB_URL="https://github.com/Microsoft/"`
 	`"sql-server-samples/releases/download/"`
 	`"adventureworks/AdventureWorks2016.bak"
 
-read -r -d '' QUERY<< "EOF"
-RESTORE DATABASE AdventureWorks2016 
-	FROM DISK = "/var/opt/mssql/backup/AdventureWorks2016.bak" 
-		WITH MOVE "AdventureWorks2016_Data" 
-			TO "/var/opt/mssql/data/AdventureWorks2016_Data.mdf", 
-		MOVE "AdventureWorks2016_Log" 
-			TO "/var/opt/mssql/data/AdventureWorks2016_Log.ldf";
+DB_NAME="AdventureWorks2016_Data"
+DB_PATH='"/var/opt/mssql/backup/AdventureWorks2016.bak"'
+DB_DATA='"AdventureWorks2016_Data"'
+DB_DATA_PATH='"/var/opt/mssql/data/AdventureWorks2016_Data.mdf"'
+DB_LOG='"AdventureWorks2016_Log"'
+DB_LOG_PATH='"/var/opt/mssql/data/AdventureWorks2016_Log.ldf"'
+
+read -r -d '' QUERY<<EOF
+RESTORE DATABASE $DB_NAME 
+	FROM DISK = $DB_PATH 
+	WITH MOVE $DB_DATA 
+	TO $DB_DATA_PATH,
+	MOVE $DB_LOG 
+	TO $DB_LOG_PATH;
 EOF
 
 docker exec -it mssql  \
