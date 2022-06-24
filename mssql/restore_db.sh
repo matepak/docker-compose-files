@@ -18,4 +18,4 @@ docker exec -it mssql  \
 	sh -c "wget --directory-prefix=/var/opt/mssql/backup/ $DB_URL"
 docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost \
 	-U SA -P $SA_PASSWORD \
--Q "$QUERY" 
+	-Q "$QUERY" 
