@@ -5,7 +5,7 @@ DB_URL="https://github.com/Microsoft/"`
 	`"sql-server-samples/releases/download/"`
 	`"adventureworks/AdventureWorks2016.bak"
 
-DB_NAME="AdventureWorks2016_Data"
+DB_NAME="AdventureWorks2016"
 DB_PATH='"/var/opt/mssql/backup/AdventureWorks2016.bak"'
 DB_DATA='"AdventureWorks2016_Data"'
 DB_DATA_PATH='"/var/opt/mssql/data/AdventureWorks2016_Data.mdf"'
