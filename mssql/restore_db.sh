@@ -12,14 +12,14 @@ DB_DATA_PATH='"/var/opt/mssql/data/AdventureWorks2016_Data.mdf"'
 DB_LOG='"AdventureWorks2016_Log"'
 DB_LOG_PATH='"/var/opt/mssql/data/AdventureWorks2016_Log.ldf"'
 
-read -r -d '' QUERY<<EOF
+read -r -d '' QUERY<<SQL
 RESTORE DATABASE $DB_NAME 
 	FROM DISK = $DB_PATH 
 	WITH MOVE $DB_DATA 
 	TO $DB_DATA_PATH,
 	MOVE $DB_LOG 
 	TO $DB_LOG_PATH;
-EOF
+SQL
 
 docker exec -it mssql  \
 	sh -c "wget --directory-prefix=/var/opt/mssql/backup/ $DB_URL"
